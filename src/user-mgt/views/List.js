@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap"
 
-function ExpList () {
+function List () {
     return (
         <Table striped bordered hover>
             <thead>
@@ -25,4 +25,4 @@ function ExpList () {
     )
 }
 
-export default ExpList;
+export default List;

@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 // import App from './App';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UserDashboard from './user-mgt/views/UserDashboard';
 // import Crud from './user-crud/Crud';
-import ExpDashboard from './exp-mgt/ExpDashboard';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* expense mgt dashboard */}
-    <ExpDashboard/>
+    <UserDashboard/>
 
     {/* <Crud /> */}
   </React.StrictMode>
