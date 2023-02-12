@@ -3,7 +3,7 @@ import { Button, Stack, Table } from "react-bootstrap"
 import { UserContext } from "../provider/UserContext";
 
 function List () {
-    const [users, setUsers] = useContext(UserContext);
+    const [userId, setUserId, users, setUsers] = useContext(UserContext);
 
     return (
         <Table striped bordered hover>
