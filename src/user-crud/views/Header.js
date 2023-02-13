@@ -5,12 +5,11 @@ import { UserContext } from "../provider/UserContext";
 function Header() {
     const [
         userId, setUserId,
-        users,
-        setUsers,
-        isShowPopup,
-        setIsShowPopup,
+        users, setUsers,
+        isShowPopup, setIsShowPopup,
         openPopup,
-        closePopup
+        closePopup,
+        responseMsg, setResponseMsg
     ] = useContext(UserContext);
 
     return (
@@ -21,6 +20,11 @@ function Header() {
                     <span>Users</span>
                     <Button className="addBtn" variant="primary" onClick={openPopup}>Add</Button>
                 </h1>
+                {
+                    (responseMsg.length > 0)
+                    ? <div className="responsMsg green">{responseMsg}</div>
+                    : ''
+                }
                 <hr />
             </div>
         </>

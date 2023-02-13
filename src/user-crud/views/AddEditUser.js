@@ -4,14 +4,12 @@ import { UserContext } from "../provider/UserContext";
 
 function AddEditUser() {
     const [
-        userId,
-        setUserId,
-        users,
-        setUsers,
-        isShowPopup,
-        setIsShowPopup,
+        userId, setUserId,
+        users, setUsers,
+        isShowPopup, setIsShowPopup,
         openPopup,
-        closePopup
+        closePopup,
+        responseMsg, setResponseMsg
     ] = useContext(UserContext);
 
     // all inout fields
@@ -81,6 +79,9 @@ function AddEditUser() {
             setUserId( prevId => prevId + 1);
 
             setUsers([...users, {...inputFields}]);
+
+            setResponseMsg('Details added successfully');
+            setTimeout(() => setResponseMsg('') , 4000);
 
             setIsShowPopup(false);
             setInputFields(prevState => {

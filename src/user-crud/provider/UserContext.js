@@ -22,13 +22,17 @@ export const UserProvider = props => {
         setIsShowPopup(false);
     }
 
+    // used to show success message
+    const [responseMsg, setResponseMsg] = useState( () => '');
+
     return(
         <UserContext.Provider value={[
             userId, setUserId,
             users, setUsers,
             isShowPopup, setIsShowPopup,
             openPopup,
-            closePopup
+            closePopup,
+            responseMsg, setResponseMsg
         ]}>
             {props.children}
         </UserContext.Provider>

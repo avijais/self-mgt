@@ -3,7 +3,32 @@ import { Button, Stack, Table } from "react-bootstrap"
 import { UserContext } from "../provider/UserContext";
 
 function List () {
-    const [userId, setUserId, users, setUsers] = useContext(UserContext);
+    const [
+        userId, setUserId,
+        users, setUsers,
+        isShowPopup, setIsShowPopup,
+        openPopup,
+        closePopup,
+        responseMsg, setResponseMsg
+    ] = useContext(UserContext);
+
+    // delete user
+    const deleteUser = (e) => {
+        e.preventDefault();
+        const removeId = parseInt(e.target.dataset.remove);
+        let index;
+        users.forEach( (currentUser, i) => {
+            if (currentUser.id === removeId) {
+                index = i;
+            }
+        })
+        users.splice(index, 1);
+        
+        setUsers([...users]);
+        
+        setResponseMsg('Record deleted successfully');
+        setTimeout(() => setResponseMsg('') , 4000);
+    }
 
     return (
         <Table striped bordered hover>
@@ -31,7 +56,8 @@ function List () {
                                         <td>{email}</td>
                                         <td>
                                             <Stack direction="horizontal" gap={2}>
-                                                <Button type="button" as="a" variant="danger" data-remove={user.id} >Delete</Button>
+                                                <Button type="button" as="a" variant="danger" data-remove={user.id} onClick={deleteUser}>Delete</Button>
+
                                                 <Button as="b" variant="primary" data-remove={user.id} >Edit</Button>
                                             </Stack>
                                         </td>
