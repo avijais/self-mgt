@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 // import App from './App';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import UserDashboard from './user-mgt/views/UserDashboard';
+import UserDashboard from './user-crud/views/UserDashboard';
 // import Crud from './user-crud/Crud';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
