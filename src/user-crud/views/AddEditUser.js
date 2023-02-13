@@ -9,63 +9,15 @@ function AddEditUser() {
         isShowPopup, setIsShowPopup,
         openPopup,
         closePopup,
-        responseMsg, setResponseMsg
+        responseMsg, setResponseMsg,
+        inputFields, setInputFields,
+        formErrors, setFormErrors,
+        isFormFldValid, setIsFormFldValid,
+        isEdit, setIsEdit,
+        validateField, validateForm,
+        inputsHandler,
+        editIndex, setEditIndex
     ] = useContext(UserContext);
-
-    // all inout fields
-    const [inputFields, setInputFields] = useState(() => {
-        return { fName: '', lName: '', email: '', id: 1 };
-    });
-
-    // used to show field level error
-    const [formErrors, setFormErrors] = useState(() => {
-        return { fName: "", lName: "", email: "" };
-    })
-
-    // used to set form fields valid/invalid
-    const [isFormFldValid, setIsFormFldValid] = useState(() => {
-        return { fNameValid: false, lNameValid: false, emailValid: false, formValid: false };
-    })
-
-    // validate form
-    const validateField = (fieldName, value) => {
-        switch (fieldName) {
-            case 'fName':
-                isFormFldValid.fNameValid = value.length >= 1;
-                formErrors.fName = isFormFldValid.fNameValid ? '' : 'First name is invalid';
-                break;
-            case 'lName':
-                isFormFldValid.lNameValid = value.length >= 1;
-                formErrors.lName = isFormFldValid.lNameValid ? '' : 'Last name is invalid';
-                break;
-            case 'email':
-                isFormFldValid.emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                formErrors.email = isFormFldValid.emailValid ? '' : 'Email address is invalid';
-                break;
-            default:
-                break;
-        }
-
-        setFormErrors(formErrors)
-        setIsFormFldValid(isFormFldValid)
-        validateForm();
-    }
-
-    // set form valid/invalid as another field valid/invalid
-    const validateForm = () => {
-        let isFormValid = (isFormFldValid.fNameValid && isFormFldValid.lNameValid && isFormFldValid.emailValid) ? true : false;
-        setIsFormFldValid(pevState => {
-            return { ...pevState, formValid: isFormValid }
-        })
-    }
-
-    // set input field values
-    const inputsHandler = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        setInputFields({ ...inputFields, [name]: value })
-        validateField(name, value);
-    }
 
     // add new user
     const submitForm = (e) => {
@@ -73,6 +25,7 @@ function AddEditUser() {
         validateForm();
 
         if (isFormFldValid.formValid) {
+            // if (inputFields.fName && inputFields.lName && inputFields.email) {
             setInputFields(prevState => {
                 return { ...prevState, id: prevState.id + 1 };
             });
@@ -83,6 +36,26 @@ function AddEditUser() {
             setResponseMsg('Details added successfully');
             setTimeout(() => setResponseMsg('') , 4000);
 
+            setIsShowPopup(false);
+            setInputFields(prevState => {
+                return { fName: '', lName: '', email: '', id: prevState.id };
+            });
+        }
+    }
+
+    // used to update user
+    const updateRecord = (e) => {
+        e.preventDefault();
+        validateForm();
+        if (inputFields.fName && inputFields.lName && inputFields.email) {
+            users[editIndex].fName = inputFields.fName;
+            users[editIndex].lName = inputFields.lName;
+            users[editIndex].email = inputFields.email;
+            setUsers([...users]);
+
+            setResponseMsg('Details updated successfully');
+            setTimeout(() => setResponseMsg('') , 4000);
+            
             setIsShowPopup(false);
             setInputFields(prevState => {
                 return { fName: '', lName: '', email: '', id: prevState.id };
@@ -160,7 +133,12 @@ function AddEditUser() {
                     <Button variant="secondary" onClick={closePopup}>
                         Cancel
                     </Button>
-                    <Button disabled={!isFormFldValid.formValid} variant="primary" type="submit" onClick={submitForm}>Save</Button>
+                    {
+                        isEdit
+                        ?<Button disabled={!isFormFldValid.formValid} variant="primary" type="submit" onClick={updateRecord}>Update</Button>
+                        :<Button disabled={!isFormFldValid.formValid} variant="primary" type="submit" onClick={submitForm}>Save</Button>
+
+                    }
                 </Modal.Footer>
             </Modal>
         </>

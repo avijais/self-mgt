@@ -5,9 +5,6 @@ function Crud() {
     // used to maintaine id state
     const [userId, setUserId] = useState( () => 0);
 
-    // mode
-    const [isEdit, setIsEdit] = useState(() => false);
-
     // users state
     const [users, setUsers] = useState( () => []);
 
@@ -49,38 +46,6 @@ function Crud() {
             return { ...prevState, fName: '', lName: '', email: '', id: newId }
         });
         setShow(true);
-    }
-
-    // validate form
-    const validateField = (fieldName, value) => {
-        switch (fieldName) {
-            case 'fName':
-                isFormFldValid.fNameValid = value.length >= 1;
-                formErrors.fName = isFormFldValid.fNameValid ? '' : 'First name is invalid';
-                break;
-            case 'lName':
-                isFormFldValid.lNameValid = value.length >= 1;
-                formErrors.lName = isFormFldValid.lNameValid ? '' : 'Last name is invalid';
-                break;
-            case 'email':
-                isFormFldValid.emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                formErrors.email = isFormFldValid.emailValid ? '' : 'Email address is invalid';
-                break;
-            default:
-                break;
-        }
-
-        setFormErrors(formErrors)
-        setIsFormFldValid(isFormFldValid)
-        validateForm();
-    }
-
-    // set form valid/invalid as another field valid/invalid
-    const validateForm = () => {
-        let isFormValid = (isFormFldValid.fNameValid && isFormFldValid.lNameValid && isFormFldValid.emailValid) ? true : false;
-        setIsFormFldValid(pevState => {
-            return { ...pevState, formValid: isFormValid }
-        })
     }
 
     // set input field values

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Stack, Table } from "react-bootstrap"
 import { UserContext } from "../provider/UserContext";
 
@@ -9,7 +9,14 @@ function List () {
         isShowPopup, setIsShowPopup,
         openPopup,
         closePopup,
-        responseMsg, setResponseMsg
+        responseMsg, setResponseMsg,
+        inputFields, setInputFields,
+        formErrors, setFormErrors,
+        isFormFldValid, setIsFormFldValid,
+        isEdit, setIsEdit,
+        validateField, validateForm,
+        inputsHandler,
+        editIndex, setEditIndex
     ] = useContext(UserContext);
 
     // delete user
@@ -28,6 +35,24 @@ function List () {
         
         setResponseMsg('Record deleted successfully');
         setTimeout(() => setResponseMsg('') , 4000);
+    }
+
+    // set user details in the form for edit
+    const setEditUser = (e) => {
+        e.preventDefault();
+        setFormErrors({ fName: "", lName: "", email: "" });
+        setIsFormFldValid({ fNameValid: true, lNameValid: true, emailValid: true, formValid: true });
+        setIsEdit(true);
+
+        let index;
+        users.forEach( (currentUser, i) => {
+            if (currentUser.id === parseInt(e.target.dataset.remove)) {
+                index = i;
+            }
+        })
+        setEditIndex(index);
+        setInputFields(users[index]);
+        setIsShowPopup(true);
     }
 
     return (
@@ -58,7 +83,7 @@ function List () {
                                             <Stack direction="horizontal" gap={2}>
                                                 <Button type="button" as="a" variant="danger" data-remove={user.id} onClick={deleteUser}>Delete</Button>
 
-                                                <Button as="b" variant="primary" data-remove={user.id} >Edit</Button>
+                                                <Button as="b" variant="primary" data-remove={user.id} onClick={setEditUser}>Edit</Button>
                                             </Stack>
                                         </td>
                                     </tr>
