@@ -6,16 +6,18 @@ export const UserProvider = props => {
     // used to maintaine id state
     const [userId, setUserId] = useState( () => 1);
 
+    // array users having each user object
     const [users, setUsers] = useState([]);
-    // { id: 1, fName: "Avi", lName: "Jais", email: "avi@email.com" },
-    // { id: 2, fName: "Savi", lName: "Jaiswal", email: "savi@gmail.com" },
 
+    // boolean state to show/hide popup
     const [isShowPopup, setIsShowPopup] = useState(false);
 
+    // handling the opening of popup
     const openPopup = () => {
         setIsShowPopup(true);
     }
 
+    // handling the closing of popup
     const closePopup = () => {
         setIsShowPopup(false);
     }
