@@ -18,7 +18,7 @@ function List () {
                 </thead>
                 <tbody>
                     {
-                        users.map((user, index) => {
+                        [...users].reverse().map((user, index) => {
                         const { fName, lName, email } = user;
                         return (
                             <React.Fragment key={index}>
