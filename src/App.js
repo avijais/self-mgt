@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import List from './user/List';
-import UserForm from './user/UserForm';
-import { Badge } from 'react-bootstrap';
+import SelfMgtDashboard from './self-mgt/views/SelfMgtDashboard';
+import UserDashboard from './user-crud/views/UserDashboard';
+import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
   return (
-    <div className='container mt-5'>
-    </div>
+    <Routes>
+      <Route path="/" element={<SelfMgtDashboard/>} />
+      <Route path="/user-mgt" element={<UserDashboard/>} />
+    </Routes>
   );
 }
 
