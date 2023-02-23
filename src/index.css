@@ -33,3 +33,16 @@ code {
 .addBtn {
   margin-left: 76%;
 }
+
+nav {
+  background-color: blueviolet;
+  padding: 1.3em;
+}
+
+nav a {
+  color: #000;
+  margin-right: 2em;
+  font-size: 1.25em;
+  font-weight: bold;
+  text-decoration: none;
+}
