@@ -38,7 +38,7 @@ code {
 /* Nav bar css */
 nav {
   background-color: blueviolet;
-  padding: 1.3em;
+  padding: .75em;
 }
 
 nav a {
@@ -55,4 +55,5 @@ nav a:hover {
 nav a.active {
   font-weight: bold;
   font-size: 1.35em;
+  color: #ffa;
 }
