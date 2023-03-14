@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SelfMgtDashboard from './self-mgt/views/SelfMgtDashboard';
 import UserDashboard from './user-crud/views/UserDashboard';
 import { Routes, Route } from 'react-router-dom';
@@ -9,8 +9,8 @@ const App = () => {
     <>
       <Navbar/>
       <Routes>
-        <Route path="/" element={<SelfMgtDashboard/>} />
-        <Route path="/user-mgt" element={<UserDashboard/>} />
+        <Route path="/" element={<UserDashboard/>} />
+        <Route path="/self-mgt" element={<SelfMgtDashboard/>} />
       </Routes>
     </>
   );
