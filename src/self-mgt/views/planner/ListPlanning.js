@@ -78,7 +78,7 @@ function ListPlanning({
             {/* heading and add button section */}
             <div className='mb-5'>
                 <h1>
-                    <span>Planning</span>
+                    <span>Plans</span>
                     <Button className="addBtn" variant="primary" onClick={openPopup}>Add</Button>
                 </h1>
                 { responseMsg

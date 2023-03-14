@@ -118,7 +118,7 @@ function AddEditPlan({
             >
                 <Modal.Header closeButton>
                     <Modal.Title>
-                    User
+                    Plan
                     </Modal.Title>
                     <br/>
                 </Modal.Header>
