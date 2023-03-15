@@ -70,30 +70,21 @@ function List() {
                 {
                     [...users].reverse().map((user, index) => {
                         const { fName, lName, email } = user;
-                        return (
-                            <React.Fragment key={index}>
-                                {
-                                    (Object.keys(user).length > 0)
-                                        ? <tr>
-                                            <td>{(user.id)}</td>
-                                            <td>{fName}</td>
-                                            <td>{lName}</td>
-                                            <td>{email}</td>
-                                            <td>
-                                                <Stack direction="horizontal" gap={2}>
-                                                    <Button type="button" as="a" variant="danger" data-remove={user.id} onClick={deleteUser}>Delete</Button>
+                        return <tr key={user.id}>
+                            <td>{(user.id)}</td>
+                            <td>{fName}</td>
+                            <td>{lName}</td>
+                            <td>{email}</td>
+                            <td>
+                                <Stack direction="horizontal" gap={2}>
+                                    <Button type="button" as="a" variant="danger" data-remove={user.id} onClick={deleteUser}>Delete</Button>
 
-                                                    <Button as="b" variant="primary" data-remove={user.id} onClick={setEditUser}>Edit</Button>
-                                                </Stack>
-                                            </td>
-                                        </tr>
-                                        : <tr>
-                                            <td className="txt-center" colSpan={5}>No Record Found</td>
-                                        </tr>
-                                }
-                            </React.Fragment>
-                        );
-                    })}
+                                    <Button as="b" variant="primary" data-remove={user.id} onClick={setEditUser}>Edit</Button>
+                                </Stack>
+                            </td>
+                        </tr>
+                    })
+                }
                 {
                     (users.length < 1)
                         ? <tr>
