@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { SelfMgtContext } from "../../providers/SelfMgtContext";
 
-function AddEditPlan({
+function AddEditPlanPopup({
     isShowPopup,
     closePopup,
     setIsShowPopup,
@@ -189,4 +189,4 @@ function AddEditPlan({
     )
 }
 
-export default AddEditPlan;
+export default AddEditPlanPopup;

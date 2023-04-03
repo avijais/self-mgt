@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { SelfMgtProvider } from "../providers/SelfMgtContext";
-import AddEditPlan from "./planner/AddEditPlan";
+import AddEditPlanPopup from "./planner/AddEditPlanPopup";
 import ListPlanning from "./planner/ListPlanning";
 
 function SelfMgtDashboard() {
@@ -51,7 +51,7 @@ function SelfMgtDashboard() {
                     setFormErrors={setFormErrors}
                     setIsFormFldValid={setIsFormFldValid}
                 />
-                <AddEditPlan
+                <AddEditPlanPopup
                     isShowPopup={isShowPopup}
                     closePopup={closePopup}
                     setIsShowPopup={setIsShowPopup}

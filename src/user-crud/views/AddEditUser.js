@@ -73,9 +73,7 @@ function AddEditUser() {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>
-                    User
-                    </Modal.Title>
+                    <Modal.Title>User</Modal.Title>
                     <br/>
                 </Modal.Header>
                 <Modal.Body>
